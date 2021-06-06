@@ -4,17 +4,23 @@
 \alias{my_t.test}
 \title{Student's t-Test}
 \usage{
-my_t.test(x, alternative = c("two.sided", "less", "greater"), mu)
+my_t.test(x, alternative = "two.sided", mu)
 }
 \arguments{
 \item{x}{A vector with numeric entries that provides the data values for the test.}
 
-\item{alternative}{A string that specifies the type of the alternative hypothesis for the test. This must be \code{"two.sided"}, \code{"less"}, or \code{"greater"}.}
+\item{alternative}{A string that specifies the type of the alternative hypothesis for the test.
+This must be \code{"two.sided"}, \code{"less"}, or \code{"greater"}.
+Note if no value is given this parameter defaults to \code{"two.sided"}.}
 
 \item{mu}{A numeric input that specifies the true mean according the the null hypothesis.}
 }
 \value{
-A list containing the following fields. The numeric, \code{test_stat}, which is the calculated t-test statistic. The numeric, \code{df}, which is the degrees of freedom of the test. The string, \code{alternative}, which is the alternative hypothesis that was specified. The numeric, \code{p_val}, which is the p-value calculated by the tests.
+A list containing the following fields.
+The numeric, \code{test_stat}, which is the calculated t-test statistic.
+The numeric, \code{df}, which is the degrees of freedom of the test.
+The string, \code{alternative}, which is the alternative hypothesis that was specified.
+The numeric, \code{p_val}, which is the p-value calculated by the tests.
 }
 \description{
 This function performs a one sample t-test.

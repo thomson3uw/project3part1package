@@ -15,6 +15,49 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
 ```{r setup}
 library(project3part1package)
 ```
+
+You should put your introuctory paragraph here!!!!
+
+# Student's T-test
+
+```{r}
+data(my_gapminder)
+
+my_data <- my_gapminder$lifeExp
+```
+
+```{r}
+my_t.test(x = my_data, alternative = "two.sided", mu = 60)
+```
+
+```{r}
+my_t.test(x = my_data, alternative = "less", mu = 60)
+```
+
+```{r}
+my_t.test(x = my_data, alternative = "greater", mu = 60)
+```
+
+# Fitting Linear Models
+
+```{r}
+my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+```
+
+```{r}
+
+```
+
+# K-Nearest Neighbors Cross Validation
+
+# Random Forests Cross Validation
+
+
+
+
+

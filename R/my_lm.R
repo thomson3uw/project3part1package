@@ -1,4 +1,4 @@
-#' Fit Linear Models
+#' Fitting Linear Models
 #'
 #' This function fits a linear model in the form of the specified formula using the given data.
 #'

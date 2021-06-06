@@ -2,7 +2,7 @@
 % Please edit documentation in R/my_lm.R
 \name{my_lm}
 \alias{my_lm}
-\title{Fit Linear Models}
+\title{Fitting Linear Models}
 \usage{
 my_lm(formula, data)
 }

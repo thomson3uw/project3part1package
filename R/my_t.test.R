@@ -3,12 +3,18 @@
 #' This function performs a one sample t-test.
 #'
 #' @param x A vector with numeric entries that provides the data values for the test.
-#' @param alternative A string that specifies the type of the alternative hypothesis for the test. This must be \code{"two.sided"}, \code{"less"}, or \code{"greater"}.
+#' @param alternative A string that specifies the type of the alternative hypothesis for the test.
+#' This must be \code{"two.sided"}, \code{"less"}, or \code{"greater"}.
+#' Note if no value is given this parameter defaults to \code{"two.sided"}.
 #' @param mu A numeric input that specifies the true mean according the the null hypothesis.
 #'
 #' @keywords inference
 #'
-#' @return A list containing the following fields. The numeric, \code{test_stat}, which is the calculated t-test statistic. The numeric, \code{df}, which is the degrees of freedom of the test. The string, \code{alternative}, which is the alternative hypothesis that was specified. The numeric, \code{p_val}, which is the p-value calculated by the tests.
+#' @return A list containing the following fields.
+#' The numeric, \code{test_stat}, which is the calculated t-test statistic.
+#' The numeric, \code{df}, which is the degrees of freedom of the test.
+#' The string, \code{alternative}, which is the alternative hypothesis that was specified.
+#' The numeric, \code{p_val}, which is the p-value calculated by the tests.
 #'
 #' @examples
 #' my_t.test(x = rnorm(100), alternative = "two.sided", mu = 1)
@@ -17,7 +23,7 @@
 #' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
 #'
 #' @export
-my_t.test <- function(x, alternative = c("two.sided", "less", "greater"), mu) {
+my_t.test <- function(x, alternative = "two.sided", mu) {
   # check if x is truly a numeric vector
   if (is.vector(x)) {
     for (i in 1:length(x)) {
