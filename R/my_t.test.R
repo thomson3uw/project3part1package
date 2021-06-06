@@ -13,6 +13,8 @@
 #' my_t.test(x = rnorm(100), alternative = "two.sided", mu = 1)
 #' my_t.test(x = 1:100, alternative = "greater", mu = 60)
 #'
+#' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
+#'
 #' @export
 my_t.test <- function(x, alternative = c("two.sided", "less", "greater"), mu) {
   # check if x is truly a numeric vector
