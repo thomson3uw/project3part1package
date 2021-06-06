@@ -1,8 +1,25 @@
-# Function: my_lm
-# Description: fits a linear model in the form of the specified formula using the given data
-# Input: formula, a formula class object that specifies the structure of the model,
-#        data, a data frame that contains the variables of the model
-# Output: a table (matrix) that contains an esimate, standard error, t-value, and p-value of each coefficient
+#' Fit Linear Models
+#'
+#' This function fits a linear model in the form of the specified formula using the given data.
+#'
+#' @param formula A formula class object that specifies the structure of the model.
+#' @param data A data frame that contains the variables of the model.
+#'
+#' @keywords inference prediction
+#'
+#' @return A matrix in the form of a table that contains an estimate, standard error, t-value, and p-value of each coefficient.
+#'
+#' @examples
+#' ## Load in the penguins data set included in project3part1package
+#' data(my_penguins)
+#' my_penguins <- na.omit(my_penguins)
+#'
+#' my_lm(bill_length_mm ~ bill_depth_mm + flipper_length_mm, data = my_penguins)
+#' my_lm(body_mass_g ~ bill_length_mm - 1, data = my_penguins)
+#'
+#' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
+#'
+#' @export
 my_lm <- function(formula, data) {
   # check if data is a data frame
   if (!is.data.frame(data)) {
