@@ -4,9 +4,9 @@
 #'
 #' @param k The number of folds to use for cross validation.
 #'
-#'  @keywords inference
+#' @keywords inference
 #'
-#'  @return The average MSE across all k folds.
+#' @return The average MSE across all k folds.
 #'
 #' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
 #'

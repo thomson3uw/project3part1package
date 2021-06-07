@@ -1,3 +1,16 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+my_data <- stats::na.omit(project3part1package::my_penguins)
+
+test_that("Equal outputs, two.sided", {
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$test_stat,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$statistic))
+})
+
+test_that("Equal outputs, greater", {
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, alternative = "greater", mu = 20)$test_stat,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "greater", mu = 20)$statistic))
+})
+
+test_that("Equal outputs, less", {
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20)$test_stat,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20)$statistic))
 })

@@ -7,12 +7,12 @@
 my_rf_cv(k)
 }
 \arguments{
-\item{k}{The number of folds to use for cross validation.
-
-@keywords inference
-
-@return The average MSE across all k folds.}
+\item{k}{The number of folds to use for cross validation.}
+}
+\value{
+The average MSE across all k folds.
 }
 \description{
 This function runs k-fold cross validation for random forests using the penguins data set.
 }
+\keyword{inference}
