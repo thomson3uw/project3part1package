@@ -16,7 +16,7 @@ Note if no value is given this parameter defaults to \code{"two.sided"}.}
 \item{mu}{A numeric input that specifies the true mean according the the null hypothesis.}
 }
 \value{
-A list containing the following fields.
+A list containing the following items.
 The numeric, \code{test_stat}, which is the calculated t-test statistic.
 The numeric, \code{df}, which is the degrees of freedom of the test.
 The string, \code{alternative}, which is the alternative hypothesis that was specified.

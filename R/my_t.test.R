@@ -10,7 +10,7 @@
 #'
 #' @keywords inference
 #'
-#' @return A list containing the following fields.
+#' @return A list containing the following items.
 #' The numeric, \code{test_stat}, which is the calculated t-test statistic.
 #' The numeric, \code{df}, which is the degrees of freedom of the test.
 #' The string, \code{alternative}, which is the alternative hypothesis that was specified.

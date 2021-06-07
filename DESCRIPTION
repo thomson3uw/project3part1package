@@ -23,4 +23,8 @@ VignetteBuilder: knitr
 Imports: 
     ggplot2,
     dplyr,
-    tibble
+    tibble,
+    kableExtra,
+    class,
+    randomForest,
+    magrittr

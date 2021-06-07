@@ -67,7 +67,33 @@ ggplot2::ggplot(my_gapminder, ggplot2::aes(predicted, lifeExp, color = continent
 # K-Nearest Neighbors Cross Validation
 
 ```{r}
+# load the penguins data
+data(my_penguins)
 
+# remove NAs from penguins
+penguins_no_NA <- stats::na.omit(my_penguins)
+# separate the covariates and the true classification
+my_data <- data.frame("bill_length" = penguins_no_NA$bill_length_mm,
+                      "bill_depth" = penguins_no_NA$bill_depth_mm,
+                      "flipper_length" = penguins_no_NA$flipper_length_mm,
+                      "body_mass" = penguins_no_NA$body_mass_g)
+my_cl <- penguins_no_NA$species
+
+train_miss <- c()
+cv_miss <- c()
+
+# find the training and cv misclassification rates for k_nn from 1 through 10
+for(k_nn in 1:10) {
+  my_knn_cv_out <- my_knn_cv(data = my_data, cl = my_cl, k_nn = k_nn, k_cv = 5)
+  train_miss[k_nn] <- mean(my_knn_cv_out[[1]] != my_cl)
+  cv_miss[k_nn] <- my_knn_cv_out[[2]]
+}
+
+# create a table with the results
+my_table <- data.frame(k_nn = 1:10,
+                       cv_err = round(cv_miss, 4),
+                       train_err = round(train_miss, 4))
+kableExtra::kable_styling(kableExtra::kable(my_table))
 ```
 
 # Random Forests Cross Validation
