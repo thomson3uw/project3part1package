@@ -46,16 +46,35 @@ my_t.test(x = my_data, alternative = "greater", mu = 60)
 # Fitting Linear Models
 
 ```{r}
-my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+my_fit <- my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+my_fit
 ```
+
+```{r}
+my_intercept <- my_fit[1, 1]
+my_gdpPercap <- my_fit[2, 1]
+my_america_coeff <- my_fit[3, 1]
+my_asia_coeff <- my_fit[4, 1]
+my_europe_coeff <- my_fit[5, 1]
+my_oceania_coeff <- my_fit[6, 1]
+
+my_gapminder$predicted <- my_intercept + (my_gdpPercap * my_gapminder$gdpPercap) + (my_america_coeff * (my_gapminder$continent == "Americas")) + (my_asia_coeff * (my_gapminder$continent == "Asia")) + (my_europe_coeff * (my_gapminder$continent == "Europe")) + (my_oceania_coeff * (my_gapminder$continent == "Oceania"))
+
+ggplot2::ggplot(my_gapminder, ggplot2::aes(predicted, lifeExp, color = continent)) +
+  ggplot2::geom_point()
+```
+
+# K-Nearest Neighbors Cross Validation
 
 ```{r}
 
 ```
 
-# K-Nearest Neighbors Cross Validation
-
 # Random Forests Cross Validation
+
+```{r}
+
+```
 
 
 
