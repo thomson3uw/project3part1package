@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/thomson3uw/project3part1package/workflows/R-CMD-check/badge.svg)](https://github.com/thomson3uw/project3part1package/actions)
+[![codecov](https://codecov.io/gh/thomson3uw/project3part1package/branch/master/graph/badge.svg)](https://codecov.io/gh/thomson3uw/project3part1package)
 <!-- badges: end -->
 
 The goal of project3part1package is to ...
