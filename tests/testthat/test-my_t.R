@@ -1,4 +1,5 @@
 my_data <- stats::na.omit(project3part1package::my_penguins)
+my_data2 <- stats::na.omit(project3part1package::my_gapminder)
 
 test_that("Equal outputs, two.sided", {
   expect_equal(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$test_stat,
@@ -9,6 +10,17 @@ test_that("Equal outputs, two.sided", {
                t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$alternative)
   expect_equal(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$df,
                as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$parameter))
+})
+
+test_that("Equal outputs, two.sided, new data", {
+  expect_equal(my_t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$test_stat,
+               as.numeric(t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$statistic))
+  expect_equal(my_t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$p_val,
+               as.numeric(t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$p.value))
+  expect_equal(my_t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$alternative,
+               t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$alternative)
+  expect_equal(my_t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$df,
+               as.numeric(t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$parameter))
 })
 
 test_that("Equal outputs, greater", {
