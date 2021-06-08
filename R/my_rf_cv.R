@@ -12,6 +12,12 @@
 #'
 #' @export
 my_rf_cv <- function(k) {
+  if (k <= 1) {
+    stop("k must be an integer greater than 1")
+  }
+  if (k != round(k)) {
+    stop("k must be an integer greater than or equal to 1")
+  }
   # omit the NAs in my_penguins
   penguins_no_NA <- na.omit(project3part1package::my_penguins)
   # set the relevant columns of penguins as our data

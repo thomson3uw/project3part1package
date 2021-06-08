@@ -37,8 +37,12 @@ test_that("non-numeric mu input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = "test"))
 })
 
-test_that("incorrect alternative input throws an error", {
+test_that("incorrect alternative type input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = 20, mu = 20))
+})
+
+test_that("incorrect alternative string input throws an error", {
+  expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = "not an alternative", mu = 20))
 })
 
 test_that("incorrect alternative input throws an error", {
