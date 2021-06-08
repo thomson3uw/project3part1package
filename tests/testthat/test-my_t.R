@@ -12,6 +12,17 @@ test_that("Equal outputs, two.sided", {
                as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$parameter))
 })
 
+test_that("Equal outputs, default alternative", {
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, mu = 20)$test_stat,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$statistic))
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, mu = 20)$p_val,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$p.value))
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, mu = 20)$alternative,
+               t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$alternative)
+  expect_equal(my_t.test(x = my_data$bill_depth_mm, mu = 20)$df,
+               as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$parameter))
+})
+
 test_that("Equal outputs, two.sided, new data", {
   expect_equal(my_t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$test_stat,
                as.numeric(t.test(x = my_data2$pop, alternative = "two.sided", mu = 30000000)$statistic))
