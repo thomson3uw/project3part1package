@@ -82,5 +82,6 @@ test_that("incorrect alternative string input throws an error", {
 
 test_that("incorrect alternative input throws an error", {
   expect_error(my_t.test(x = data.frame(c("a", "b", "c")), alternative = 20, mu = 20))
+  expect_error(my_t.test(x = list(1, 2, "a"), alternative = 20, mu = 20))
 })
 
