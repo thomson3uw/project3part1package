@@ -17,3 +17,8 @@ test_that("Invalid formula throws an error", {
 test_that("Invalid data throws an error", {
   expect_error(my_lm(lifeExp ~ gdpPercap + continent, data = "some data"))
 })
+
+test_that("Check if the estimated coefficients match", {
+  expect_equal(my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)[, 1],
+               lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)$coefficients)
+})

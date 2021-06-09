@@ -56,8 +56,16 @@ test_that("Equal outputs, less", {
                as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20)$parameter))
 })
 
-test_that("Function outputs a list", {
+test_that("Function outputs a list with the correct elements", {
   expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20), "list")
+  expect_equal(length(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20)), 4)
+})
+
+test_that("The values in the returned list are the correct type", {
+  expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$test_stat, "double")
+  expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$p_val, "double")
+  expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$alternative, "character")
+  expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$df, "double")
 })
 
 test_that("non-numeric mu input throws an error", {
