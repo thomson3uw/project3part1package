@@ -34,5 +34,13 @@ test_that("Output is of type list", {
   expect_type(my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = 5), "list")
 })
 
+test_that("Entries in the output list are the correct type", {
+  expect_type(my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = 5)$cv_err, "double")
+  expect_type(my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = 5)$class, "integer")
+})
+
+test_that("There are the same number of predicted classifications as true classifications", {
+  expect_equal(length(my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = 5)$class), length(my_cl))
+})
 
 

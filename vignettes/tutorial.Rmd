@@ -83,7 +83,7 @@ train_miss <- c()
 cv_miss <- c()
 
 # find the training and cv misclassification rates for k_nn from 1 through 10
-for(k_nn in 1:10) {
+for (k_nn in 1:10) {
   my_knn_cv_out <- my_knn_cv(data = my_data, cl = my_cl, k_nn = k_nn, k_cv = 5)
   train_miss[k_nn] <- mean(my_knn_cv_out[[1]] != my_cl)
   cv_miss[k_nn] <- my_knn_cv_out[[2]]
@@ -99,8 +99,46 @@ kableExtra::kable_styling(kableExtra::kable(my_table))
 # Random Forests Cross Validation
 
 ```{r}
-
+my_cv_MSEs <- matrix(NA, nrow = 30, ncol = 3)
+counter <- 1
+for (k in c(2, 5, 10)) {
+  k_MSE <- c()
+  for (i in 1:30) {
+    k_MSE[i] <- my_rf_cv(k)
+  }
+  my_cv_MSEs[, counter] <- k_MSE
+  counter <- counter + 1
+}
+cv_MSEs_data <- data.frame("cv_MSE" = c(my_cv_MSEs[, 1], my_cv_MSEs[, 2], my_cv_MSEs[, 3]),
+                                "k" = c(rep(2, 30), rep(5, 30), rep(10, 30)))
+cv_MSEs_data[, 2] <- as.factor(cv_MSEs_data[, 2])
 ```
+
+```{r}
+ggplot2::ggplot(cv_MSEs_data, ggplot2::aes(x = k, y = cv_MSE)) +
+  ggplot2::geom_boxplot()
+```
+
+```{r}
+my_MSE_table <- matrix(NA, nrow = 3, ncol = 2)
+
+my_MSE_table[1, 1] <- mean(my_cv_MSEs[, 1])
+my_MSE_table[2, 1] <- mean(my_cv_MSEs[, 2])
+my_MSE_table[3, 1] <- mean(my_cv_MSEs[, 3])
+
+my_MSE_table[1, 2] <- sd(my_cv_MSEs[, 1])
+my_MSE_table[2, 2] <- sd(my_cv_MSEs[, 2])
+my_MSE_table[3, 2] <- sd(my_cv_MSEs[, 3])
+
+my_MSE_table <- data.frame(my_MSE_table)
+colnames(my_MSE_table) <- c("mean", "standard deviation")
+rownames(my_MSE_table) <- c("2", "5", "10")
+
+kableExtra::kable_styling(kableExtra::kable(my_MSE_table))
+```
+
+
+
 
 
 
