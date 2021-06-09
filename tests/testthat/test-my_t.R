@@ -56,6 +56,10 @@ test_that("Equal outputs, less", {
                as.numeric(t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20)$parameter))
 })
 
+test_that("Function outputs a list", {
+  expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = 20), "list")
+})
+
 test_that("non-numeric mu input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = "test"))
 })
@@ -71,3 +75,4 @@ test_that("incorrect alternative string input throws an error", {
 test_that("incorrect alternative input throws an error", {
   expect_error(my_t.test(x = data.frame(c("a", "b", "c")), alternative = 20, mu = 20))
 })
+
