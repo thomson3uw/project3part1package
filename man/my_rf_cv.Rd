@@ -15,4 +15,10 @@ The average MSE across all k folds.
 \description{
 This function runs k-fold cross validation for random forests using the penguins data set.
 }
+\examples{
+my_rf_cv(10)
+my_rf_cv(5)
+my_rf_cv(2)
+
+}
 \keyword{inference}

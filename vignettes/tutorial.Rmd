@@ -170,9 +170,11 @@ my_table <- data.frame(k_nn = 1:10,
 kable_styling(kable(my_table))
 ```
 
-
+Looking at the table above, we see that the training error is zero when we set `k_nn` to 1. If we are aiming to minimize training error this is clearly the optimal choice as training error tends to increase alongside `k_nn`. However, selecting the value of `k_nn` for our model based purely off of training error could very lead to us using a model that overfits our data. Instead, we should use the k-fold cross validation misclassification rate. This error is calculated by first splitting the original data up into k folds, five in this case, and looping through each of those folds. For each fold, we then seperate the fold into the test set and the rest of the data into the training set and run and evaluate the knn algorithm off of that split. For the final misclassification rate, we then simply need to average all of the misclassification rates calculated for each fold. This method provides us with a metric as to how well the algorithm performs on data that it has not seen and as such is more representative of how well our algorithm will perform on unclassified data not included in the original data set. Based on the cross validation misclassification rate, we would still choose to set `k_nn` to 1 in our model as it minimize said error, however, now that misclassification rate should be closer to what we would expect for new data (unlike the zero training misclassifcations rate).
 
 # Random Forests Cross Validation
+
+For this demonstration of the `my_rf_cv` function, we run the function 30 times for values of `k` in `c(2, 5, 10)` as shown below.
 
 ```{r}
 # create the matrix to store all the simulated MSEs
@@ -243,28 +245,37 @@ combined_box_plot <- ggplot(data = combined_cv_MSEs, aes(x = as.factor(k), y = V
 combined_box_plot
 ```
 
+We then also compile a table of summary statistics for each value of `k`.
+
 ```{r}
 # create a table with each value of k and the corresponding summary statistics
 my_MSE_table <- matrix(NA, nrow = 3, ncol = 3)
 
+# k
 my_MSE_table[1, 1] <- 2
 my_MSE_table[2, 1] <- 5
 my_MSE_table[3, 1] <- 10
 
+# means
 my_MSE_table[1, 2] <- mean(my_cv_MSEs[, 1])
 my_MSE_table[2, 2] <- mean(my_cv_MSEs[, 2])
 my_MSE_table[3, 2] <- mean(my_cv_MSEs[, 3])
 
+# standard deviation
 my_MSE_table[1, 3] <- sd(my_cv_MSEs[, 1])
 my_MSE_table[2, 3] <- sd(my_cv_MSEs[, 2])
 my_MSE_table[3, 3] <- sd(my_cv_MSEs[, 3])
 
 my_MSE_table <- data.frame(my_MSE_table)
-colnames(my_MSE_table) <- c("k", "mean", "standard deviation")
+colnames(my_MSE_table) <- c("k", "mean CV estimate", "standard deviation CV essimate")
 
 # display the table
 kable_styling(kable(my_MSE_table))
 ```
+
+Looking over the plots and table above, we see that the median and average CV estimate drops slightly from `k = 2` to `k = 5`, yet remains fairly constant between `k = 5` and `k = 10`. It is possible that part of this difference simply comes from variance as the standard deviation of the CV estimates for `k = 2` is noticeably higher than for the other two values of `k`. However, it might also be the case that by restricting the size of the training set to half of its original size in each fold of crossvalidation, the random forest models in that case may be performing consistently worse than the models that train with a larger portion of data set. That logic would still then apply to the difference of the mean for `k = 5` and `k = 10` as well, though said is small enough to not be overly concerning. 
+
+As for the standard deviations for the three values of `k`, that difference is likely explained by the number of MSEs that get averaged in order to produce each iteration of the CV estimated MSE. For `k = 2` we are averaging the results of two seperate models while for `k = 10` we are averaging the results of ten. We would expect the average of ten models to vary less than two. Additionally, there is more overlap in the training data for `k = 10` in each fold, which might contribute to its models being more similar on average than `k = 2` or even `k = 5`. 
 
 
 

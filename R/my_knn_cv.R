@@ -13,9 +13,24 @@
 #'
 #' @return A list containing the following items.
 #' The vector \code{class}, which contains the predicted classes when KNN train on the entire provided data set.
-#' The number \code{cv_err}, which is between 0 and 1 and shows the cross-validation misclassification error.
+#' The number \code{cv_err}, which is between 0 and 1 and shows the cross-validation misclassification rate.
 #'
 #' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
+#'
+#' @examples
+#' ## Load and set up the penguins data
+#' data(my_penguins)
+#' my_penguins <- na.omit(my_penguins)
+#'
+#' penguins_no_NA <- na.omit(my_penguins)
+#' my_data <- data.frame("bill_length" = penguins_no_NA$bill_length_mm,
+#'     "bill_depth" = penguins_no_NA$bill_depth_mm,
+#'     "flipper_length" = penguins_no_NA$flipper_length_mm,
+#'     "body_mass" = penguins_no_NA$body_mass_g)
+#' my_cl <- penguins_no_NA$species
+#'
+#' my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = 5)
+#' my_knn_cv(data = my_data, cl = my_cl, k_nn = 7, k_cv = 3)
 #'
 #' @export
 my_knn_cv <- function(data, cl, k_nn, k_cv) {

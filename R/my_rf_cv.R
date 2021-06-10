@@ -10,6 +10,11 @@
 #'
 #' @importFrom stats model.frame model.matrix model.response predict pt sd na.omit
 #'
+#' @examples
+#' my_rf_cv(10)
+#' my_rf_cv(5)
+#' my_rf_cv(2)
+#'
 #' @export
 my_rf_cv <- function(k) {
   if (k <= 1) {

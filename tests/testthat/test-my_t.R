@@ -1,3 +1,7 @@
+# test the input, output, and errors of my_t.test()
+
+
+# load the penguins and gapminder data sets
 my_data <- stats::na.omit(project3part1package::my_penguins)
 my_data2 <- stats::na.omit(project3part1package::my_gapminder)
 
@@ -68,19 +72,19 @@ test_that("The values in the returned list are the correct type", {
   expect_type(my_t.test(x = my_data$bill_depth_mm, alternative = "two.sided", mu = 20)$df, "double")
 })
 
-test_that("non-numeric mu input throws an error", {
+test_that("Non-numeric mu input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = "less", mu = "test"))
 })
 
-test_that("incorrect alternative type input throws an error", {
+test_that("Incorrect alternative type input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = 20, mu = 20))
 })
 
-test_that("incorrect alternative string input throws an error", {
+test_that("Incorrect alternative string input throws an error", {
   expect_error(my_t.test(x = my_data$bill_depth_mm, alternative = "not an alternative", mu = 20))
 })
 
-test_that("incorrect alternative input throws an error", {
+test_that("Incorrect alternative input throws an error", {
   expect_error(my_t.test(x = data.frame(c("a", "b", "c")), alternative = 20, mu = 20))
   expect_error(my_t.test(x = list(1, 2, "a"), alternative = 20, mu = 20))
 })

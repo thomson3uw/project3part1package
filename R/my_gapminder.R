@@ -16,7 +16,16 @@
 #'   }
 #'
 #'
-#' @source \url{http://www.gapminder.org/data/}
+#' @source
+#' \url{http://www.gapminder.org/data/}
+#'
+#' Note that this data set was originally part of the gapminder package cited below.
+#'
+#' Jennifer Bryan (NA). gapminder: Data from Gapminder.
+#'   \url{https://github.com/jennybc/gapminder},
+#'   \url{http://www.gapminder.org/data/},
+#'   \url{https://doi.org/10.5281/zenodo.594018}.
+#'
 #' @seealso \code{\link[gapminder]{country_colors}} for a nice color scheme for the countries
 #' @importFrom tibble tibble
 #' @examples

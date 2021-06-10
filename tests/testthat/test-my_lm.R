@@ -1,3 +1,6 @@
+# test the input, output, and errors of my_lm()
+
+# load the gapminder data set without NAs
 my_data <- stats::na.omit(project3part1package::my_gapminder)
 
 test_that("Function output has the correct type", {

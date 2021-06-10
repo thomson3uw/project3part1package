@@ -1,3 +1,6 @@
+# test the input, output and errors of my_knn_cv()
+
+# load the penguins data set and create versions with NAs and without
 my_penguins <- stats::na.omit(project3part1package::my_penguins)
 penguins_no_NA <- stats::na.omit(my_penguins)
 
@@ -25,7 +28,7 @@ test_that("The data must not contain NA values", {
   expect_error(my_knn_cv(data = my_data_addNA, cl = my_cl, k_nn = 2, k_cv = 5))
 })
 
-test_that("k_nn and k_cv must be numbers", {
+test_that("K_nn and k_cv must be numbers", {
   expect_error(my_knn_cv(data = my_data, cl = my_cl, k_nn = "a", k_cv = 5))
   expect_error(my_knn_cv(data = my_data, cl = my_cl, k_nn = 2, k_cv = "b"))
 })

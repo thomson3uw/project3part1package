@@ -17,6 +17,13 @@ The main data frame \code{gapminder} has 1704 rows and 6 variables:
 }
 \source{
 \url{http://www.gapminder.org/data/}
+
+Note that this data set was originally part of the gapminder package cited below.
+
+Jennifer Bryan (NA). gapminder: Data from Gapminder.
+\url{https://github.com/jennybc/gapminder},
+\url{http://www.gapminder.org/data/},
+\url{https://doi.org/10.5281/zenodo.594018}.
 }
 \usage{
 my_gapminder
