@@ -108,7 +108,7 @@ However, it is possible that this positive value of `gdpPercap` is not actually 
 In the table above, we see that the p-value that corresponds to `gdpPercap` is significantly below \alpha = 0.05, so for that significance level, we conclude that `gdpPercap` is not equal to zero.
 
 We now plot the Actual v. Fitted values from our data and model.
-```{r}
+```{r, fig.width = 8, fig.height = 6, fig.align = "center"}
 X <- model.matrix(lifeExp ~ gdpPercap + continent, my_gapminder)
 beta <- my_fit[, 1]
 
@@ -119,14 +119,15 @@ actual_v_fitted <- data.frame("Actual" = actual_data,
                               "Fitted" = fitted_data,
                               "Continent" = as.factor(my_gapminder$continent))
 
-ggplot(actual_v_fitted, aes(x = Actual, y = Fitted, fill = Continent)) +
+actual_v_fitted_plot <- ggplot(actual_v_fitted, aes(x = Actual, y = Fitted, fill = Continent)) +
   geom_point(shape = 21, 
              size = 2,
              color = "black",
              alpha = 0.9) +
-  theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw(base_size = 15) +
-  labs(title = "Actual v. Fitted Life Expectancy")
+  labs(title = "Actual v. Fitted Life Expectancy") +
+  theme(plot.title = element_text(hjust = 0.5))
+actual_v_fitted_plot
 ```
 
 In the Actual v. Fitted plot above, we see that in our linear fit, the continent of a country seems to play a more significant role in the predicted average life span of said country than is present in the true relationship between those two variables. This is especially aparent amongst the African and Asian data points where we predict that most of those countries have a life expectancy of 50 or 60 respectively, yet when we look at the actual life expectancies of those countries, we see that there a many countries in those regions with significantly lower and higher average life expectancies. As for the other explanatory variable, hgih GDP per Capita does appear to correspond with a higher average life expectancy. It may be worthwhile editing the variable `gdpPercapita` so that it displays how much a country is above or below average so that a low GDP per Capita might also affect our results rather than simply being ignored in favor of continent. Our fitted model's predictions appear to somewhat accurate for countries in Europe, Oceania, and America. 
@@ -192,7 +193,7 @@ head(my_cv_MSEs)
 
 In the code below we generate three boxplots of the 30 average MSEs we generated in the section above.
 
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 6, fig.align = "center"}
 k2_cv_MSEs <- data.frame("MSE" = my_cv_MSEs[, 1])
 k2_box_plot <- ggplot(data = k2_cv_MSEs, aes(x = "", y = MSE)) +
   geom_boxplot(fill = "lightblue") +
@@ -204,7 +205,7 @@ k2_box_plot <- ggplot(data = k2_cv_MSEs, aes(x = "", y = MSE)) +
 k2_box_plot
 ```
 
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 6, fig.align = "center"}
 k5_cv_MSEs <- data.frame("MSE" = my_cv_MSEs[, 2])
 k5_box_plot <- ggplot(data = k5_cv_MSEs, aes(x = "", y = MSE)) +
   geom_boxplot(fill = "red") +
@@ -216,7 +217,7 @@ k5_box_plot <- ggplot(data = k5_cv_MSEs, aes(x = "", y = MSE)) +
 k5_box_plot
 ```
 
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE, message = FALSE, fig.width = 8, fig.height = 6, fig.align = "center"}
 k10_cv_MSEs <- data.frame("MSE" = my_cv_MSEs[, 3])
 k10_box_plot <- ggplot(data = k10_cv_MSEs, aes(x = "", y = MSE)) +
   geom_boxplot(fill = "lightgreen") +
@@ -228,7 +229,7 @@ k10_box_plot <- ggplot(data = k10_cv_MSEs, aes(x = "", y = MSE)) +
 k10_box_plot
 ```
 
-```{r}
+```{r, fig.width = 8, fig.height = 6, fig.align = "center"}
 combined_cv_MSEs <- data.frame("Values" = c(my_cv_MSEs[, 1], my_cv_MSEs[, 2], my_cv_MSEs[, 3]),
                                "k" = c(rep(2, 30), rep(5, 30), rep(10, 30)))
 combined_box_plot <- ggplot(data = combined_cv_MSEs, aes(x = as.factor(k), y = Values, fill = as.factor(k))) +
